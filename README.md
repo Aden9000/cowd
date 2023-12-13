@@ -1,2 +1,3 @@
 # cowd
-skol
+skol ni goys
+
