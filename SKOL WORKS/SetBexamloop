@@ -1,0 +1,23 @@
+/*
+ * This program calculates the amount due of an International call from New York to New Delhi.
+ * Name: Aldrin Meller T. Basalo
+ * February 22, 2024
+ */
+import java.util.Scanner;
+public class SetB {
+    public static void main ( String[] args ){
+    
+        Scanner scan = new Scanner( System.in );
+        System.out.println("Enter the minute/s the call lasted: ");
+        double minute = scan.nextDouble();
+        
+        double amountDue = 1.99;
+
+        if ( minute >= 3 ){
+            amountDue= amountDue + 2.00 + ((minute - 3) * 0.45);
+            System.out.printf("Amount due: %.2f", amountDue);
+        }
+        else if (minute < 3)
+            System.out.println("Amount due: "+ amountDue);
+    }
+}
