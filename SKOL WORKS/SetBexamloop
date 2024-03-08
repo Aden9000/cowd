@@ -1,23 +1,30 @@
 /*
  * This program calculates the amount due of an International call from New York to New Delhi.
+ * With Loop.
  * Name: Aldrin Meller T. Basalo
- * February 22, 2024
+ * March 8, 2024
  */
 import java.util.Scanner;
-public class SetB {
-    public static void main ( String[] args ){
-    
-        Scanner scan = new Scanner( System.in );
-        System.out.println("Enter the minute/s the call lasted: ");
-        double minute = scan.nextDouble();
-        
-        double amountDue = 1.99;
 
-        if ( minute >= 3 ){
-            amountDue= amountDue + 2.00 + ((minute - 3) * 0.45);
-            System.out.printf("Amount due: %.2f", amountDue);
-        }
-        else if (minute < 3)
-            System.out.println("Amount due: "+ amountDue);
+public class SetB {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        double amountDue = 1.99;
+        String Y_N;
+        do {
+            System.out.println("Enter the minute/s the call lasted: ");
+            double minute = scan.nextDouble();
+            if (minute >= 3) {
+                amountDue = amountDue + 2.00 + ((minute - 3) * 0.45);
+                System.out.printf("Amount due: %.2f", amountDue);
+            } else if (minute <= 0)
+                System.out.println("Amount due: 0.00");
+            else if (minute < 3) {
+                System.out.println("Amount due: " + amountDue);
+            }
+            System.out.println("\nInput again? [Y/N]: ");
+            Y_N = scan.next().toUpperCase();
+        } while (Y_N.equals("Y"));
+        System.out.println("End Porgram");
     }
 }
