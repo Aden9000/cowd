@@ -1,0 +1,35 @@
+import java.util.Scanner;
+public class MicrowaveOvenHeatingTime {
+    public static void main(String[] args){
+        Scanner scan = new Scanner(System.in);
+        int itemToHeat, seconds, minute, itemTime;
+
+        System.out.print("How many items to heat: ");
+        itemToHeat = scan.nextInt();
+        scan.nextLine();
+
+        System.out.print("Time for one item: ");
+        itemTime = scan.nextInt();
+        scan.nextLine();
+ 
+    
+        if(itemTime >= 100){
+            minute = itemTime / 100;
+            seconds = itemTime % 100;
+            itemTime = (minute * 60) + seconds;
+        }
+        
+        if(itemToHeat == 2)
+            itemTime *= 1.5;
+        else if(itemToHeat == 3)
+            itemTime *= 2;
+        else if(itemToHeat > 3){
+            System.out.println("Not recommended");
+        }
+
+        minute = itemTime / 60;
+        seconds = itemTime % 60;
+
+        System.out.println("Heat for " +  minute + " minute/s " + seconds + " second/s");
+    }
+}
