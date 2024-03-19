@@ -318,3 +318,29 @@ public class DiscountPrices {
             System.out.println("No discount price");
     }
 }
+
+
+import java.util.Scanner;
+public class GroundBeefValueCalculator {
+    public static void main (String [] args){
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Price per pound package A:");
+        double packA = scan.nextDouble();
+        System.out.println("Percent lean package A:");
+        double leanA = scan.nextDouble();
+        System.out.println("Price per pound package A:");
+        double packB = scan.nextDouble();
+        System.out.println("Percent lean package A:");
+        double leanB = scan.nextDouble();
+
+        double costA = (packA / leanA) * 100;
+        double costB = (packB / leanB) * 100;
+
+        System.out.printf("Package A cost per pound of lean: %.6f", costA);
+        System.out.printf("\nPackage B cost per pound of lean: %.6f\n", costB);
+        if (costB > costA)
+            System.out.println("Package A is the best value");
+        else
+            System.out.println("Package B is the best value");
+    }
+}
