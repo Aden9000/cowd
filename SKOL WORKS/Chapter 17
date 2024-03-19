@@ -33,3 +33,66 @@ public class MicrowaveOvenHeatingTime {
         System.out.println("Heat for " +  minute + " minute/s " + seconds + " second/s");
     }
 }
+
+import java.util.Scanner;
+public class TownDump {
+    public static void main(String[] args){
+        Scanner scan = new Scanner(System.in);
+        int weightInput, additionalWeight, addedPound,charge;
+
+        System.out.println("Weight of a load of trash (in pounds): ");
+        weightInput = scan.nextInt();
+
+        additionalWeight = weightInput - 200;
+        addedPound = additionalWeight / 100;
+        charge = 200 + addedPound * 8;
+
+        if(weightInput <= 200){
+            charge = 20;
+        }
+        
+        System.out.println("The total of charge is: " + charge + "$");
+    }
+}
+
+
+import java.util.Scanner;
+public class FantasyGame {
+    public static void main(String[] args){
+        Scanner scan = new Scanner(System.in);
+        String name;
+        int strength, health, luck, totalPoints;
+        
+        System.out.println("Welcome to Yertle's Quest");
+        System.out.println("Enter the name of your character: ");
+        name = scan.nextLine();
+
+        System.out.println("Enter Strength (1-10): ");
+        strength = scan.nextInt();
+
+        System.out.println("Enter health (1-10): ");
+        health = scan.nextInt();
+
+        System.out.println("Enter luck (1-10): ");
+        luck = scan.nextInt();
+
+        if(strength > 10 || health > 10 || health > 10)
+            System.out.println("Please enter value less than 10.");
+        else{
+            totalPoints = strength + health + luck;
+            if(totalPoints > 15){
+                strength = 5;
+                health = 5;
+                luck = 5;
+                System.out.println("You have give your character too many points! Default values have been assigned: ");
+                System.out.println(name + ", strenght: " + strength+ ", health: " + health + ", luck: " + luck);
+            }
+            else
+            {
+                System.out.println(name + ", strenght: " + strength+ ", health: " + health + ", luck: " + luck);
+            }
+        }
+    }
+}
+
+
