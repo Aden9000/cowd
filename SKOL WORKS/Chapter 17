@@ -121,3 +121,23 @@ public class InternetDelicatessen {
         System.out.printf("\ntotal\t\t%8.2f", total);
     }
 }
+
+
+import java.util.Scanner;
+public class SteamEngineEfficiency {
+    public static void main (String [] args){
+        double efficiency;
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Enter air temperature:");
+        int Tair = scan.nextInt();
+        System.out.println("Enter steam temperature:");
+        int Tsteam = scan.nextInt();
+
+        efficiency = 1 - Tair / Tsteam;
+        if (Tsteam < 373)
+            efficiency = 0;
+        
+        System.out.println("efficiency is = "+ efficiency);
+            
+    }
+}
