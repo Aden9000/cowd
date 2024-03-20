@@ -96,3 +96,28 @@ public class FantasyGame {
 }
 
 
+import java.util.Scanner;
+public class InternetDelicatessen {
+    public static void main (String [] args){
+        double delivery = 0.00;
+        Scanner scan = new Scanner(System.in);
+        System.out.printf("Enter the item: ");
+        String item = scan.nextLine();
+        System.out.printf("Enter the price: ");
+        double price = scan.nextDouble();
+        System.out.printf("Overnight delivery (0==no, 1==yes): ");
+        short typeDelivery = scan.nextShort();
+
+        if (typeDelivery == 1)
+            delivery+= 3.00;
+        if (price < 10.00)
+            delivery+= 2.00;
+        
+        double total = price + delivery;
+
+        System.out.println("Invoice:");
+        System.out.printf("\n%s\t\t%8.2f", item, price );
+        System.out.printf("\ndelivery\t%8.2f", delivery);
+        System.out.printf("\ntotal\t\t%8.2f", total);
+    }
+}
