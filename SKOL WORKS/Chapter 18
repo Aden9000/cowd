@@ -1,1 +1,122 @@
+import java.util.Scanner;
+public class CheckCharge {
+    public static void main (String [] args){
+        double seriviceCharge;
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Enter dollars in their checking account:");
+        double checkingACC = scan.nextDouble();
+        System.out.println("Enter dollars in their savings account:");
+        double savingsACC = scan.nextDouble();
+        if (checkingACC > 1000 || savingsACC > 1500)
+            seriviceCharge = 0;
+        else
+            seriviceCharge = 0.15;
 
+        System.out.println("Service Charge is: $"+ seriviceCharge );
+    }
+}
+
+
+import java.util.Scanner;
+public class TirePressure {
+    public static void main (String [] args){
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Input right front pressure:");
+        int frontR = scan.nextInt();
+        System.out.println("Input left front pressure:");
+        int frontL = scan.nextInt();
+        System.out.println("Input right rear pressure:");
+        int backR = scan.nextInt();
+        System.out.println("Input left rear pressure:");
+        int backL = scan.nextInt();
+        if (frontR == frontL && backR == backL)
+            System.out.println("Inflation is OK");
+        else
+            System.out.println("Inflation is not OK");
+    }
+}
+
+import java.util.Scanner;
+public class MoreTirePressure {
+    public static void main (String [] args){
+        Boolean goodPressure = true;
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Input right front pressure:");
+        int frontR = scan.nextInt();
+        if (frontR < 35 || frontR > 45){
+            System.out.println("Warning: pressure is out of range");
+            goodPressure = false;
+        }
+        System.out.println("Input left front pressure:");
+        int frontL = scan.nextInt();
+        if (frontL < 35 || frontL > 45){
+            System.out.println("Warning: pressure is out of range");
+            goodPressure = false;
+        }
+        System.out.println("Input right rear pressure:");
+        int backR = scan.nextInt();
+        if (backR < 35 || backR > 45){
+            System.out.println("Warning: pressure is out of range");
+            goodPressure = false;
+        }
+        System.out.println("Input left rear pressure:");
+        int backL = scan.nextInt();
+        if (backL < 35 || backL > 45){
+            System.out.println("Warning: pressure is out of range");
+            goodPressure = false;
+        }
+        if(goodPressure)
+            if (frontR == frontL && backR == backL)
+                System.out.println("Inflation is OK");
+            else
+                System.out.println("Inflation is Bad");
+        else
+            System.out.println("Error: There have been warnings about out of range tire pressure");
+    }
+}
+
+import java.util.Scanner;
+
+public class ThePressureisBuilding {
+    public static void main (String [] args){
+        Boolean goodPressure = true;
+        int frontPressure;
+        int backPressure;
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Input right front pressure:");
+        int frontR = scan.nextInt();
+        if (frontR < 35 || frontR > 45){
+            System.out.println("Warning: pressure is out of range");
+            goodPressure = false;
+        }
+        System.out.println("Input left front pressure:");
+        int frontL = scan.nextInt();
+        if (frontL < 35 || frontL > 45){
+            System.out.println("Warning: pressure is out of range");
+            goodPressure = false;
+        }
+        System.out.println("Input right rear pressure:");
+        int backR = scan.nextInt();
+        if (backR < 35 || backR > 45){
+            System.out.println("Warning: pressure is out of range");
+            goodPressure = false;
+        }
+        System.out.println("Input left rear pressure:");
+        int backL = scan.nextInt();
+        if (backL < 35 || backL > 45){
+            System.out.println("Warning: pressure is out of range");
+            goodPressure = false;
+        }
+
+        frontPressure = frontR - frontL;
+        backPressure = backR - backL;
+
+        if(goodPressure)
+            if (frontPressure <= 3 || frontPressure >= -3 && backPressure <= 3 || backPressure >= -3)
+                System.out.println("Inflation is OK");
+            else
+                System.out.println("Inflation is Bad");
+        else
+            System.out.println("Error: There have been warnings about out of range tire pressure");
+    }
+}
