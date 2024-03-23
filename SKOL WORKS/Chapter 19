@@ -1,1 +1,111 @@
+import java.util.Scanner;
+public class RunofIntegers {
+    public static void main (String [] args){
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Enter Start:");
+        int start = scan.nextInt();
+        System.out.println("Enter End:");
+        int end = scan.nextInt();
 
+        while (start <= end){
+            System.out.println(start);
+            start = start + 1;
+        }
+    }
+}
+
+import java.util.Scanner;
+public class SumofSequentialIntegers {
+    public static void main (String [] args){
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Enter N:");
+        int n = scan.nextInt();
+        int i = 1;
+        int lsum = 0;
+        int fsum = (n*(n+1))/2;
+        while ( i <= n){
+            System.out.println(i);
+            lsum += i;
+            i++;
+        }
+        
+        System.out.println("Loop sum = "+ lsum);
+        System.out.println("Formula sum = "+ fsum);
+    }
+}
+
+import java.util.Scanner;
+public class SumofaRangeofSequentialIntegers {
+
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Enter low:");
+        int low = scan.nextInt();
+        System.out.println("Enter High:");
+        int high = scan.nextInt();
+
+        int highsum = (high * (high + 1)) / 2;
+        int lowsum = ((low - 1) * ((low - 1) + 1)) / 2;
+        int sum = highsum - lowsum;
+
+        while (low <= high) {
+            System.out.println(low);
+            low = low + 1;
+        }
+        System.out.println("sum = "+ sum);
+    }
+}
+
+import java.util.Scanner;
+public class RepeatedlyEchoaWord {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Enter a word:");
+        String inputString = scan.nextLine();
+        int times = inputString.length();
+        int i = 1;
+        System.out.println();
+        while (i <= times){
+            System.out.println(inputString);
+            i++;
+        }
+    }
+}
+
+
+import java.util.Scanner;
+public class WordsSeparatedbyDots {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Enter first word:");
+        String firstW = scan.nextLine();
+        System.out.println("Enter second word:");
+        String secondW = scan.nextLine();
+        int firstWlength = firstW.length();
+        int secondWlength = secondW.length();
+        int dots = firstWlength + secondWlength;
+        System.out.print(firstW);
+        while (dots < 30){
+            System.out.print(".");
+            dots++;
+        }
+        System.out.print(secondW);
+    }
+}
+
+
+import java.util.Scanner;
+public class OneLetterperLine {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        System.out.printf("Enter a word: ");
+        String word = scan.nextLine();
+        int wordLength = word.length();
+        int i = 0;
+        while (i <= wordLength){
+            char letter = word.charAt(i);
+            System.out.println(letter);
+            i++;
+        }
+    }
+}
