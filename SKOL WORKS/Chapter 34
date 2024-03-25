@@ -1,0 +1,59 @@
+import java.util.Scanner;
+public class CharacterCounter {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Input a Line:");
+        String line = scan.nextLine();
+        int chlength = line.length();
+        int i = 0;
+        int vowels = 0;
+        int punctuation = 0;
+        int spaces = 0;
+        int consonants = 0;
+        while (i < chlength){
+            char ch = Character.toLowerCase(line.charAt(i));
+            switch (ch) {
+                case 'a':
+                case 'e':
+                case 'i':
+                case 'o':
+                case 'u':
+                    vowels++;
+                    break;
+                case '.':
+                case ',':
+                case '?':
+                case ';':
+                case '!':
+                case ':':
+                case '\'':
+                case '(':
+                case ')':
+                case '[':
+                case ']':
+                case '"':
+                case '-':
+                case '_':
+                case '/':
+                case '@':
+                case '{':
+                case '}':
+                case '*':
+                    punctuation++;
+                    break;
+                case ' ':
+                    spaces++;
+                default:
+                    if (Character.isAlphabetic(ch))
+                        consonants++;
+            }
+            i++;
+        }
+        System.out.println("Number of consonants: " + consonants);
+        System.out.println("Number of vowels: " + vowels);
+        System.out.println("Number of punctuation: "+ punctuation);
+        System.out.println("Number of spaces: "+ spaces);
+    }
+}
+
+
