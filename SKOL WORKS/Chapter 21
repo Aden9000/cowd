@@ -1,0 +1,45 @@
+import java.util.Scanner;
+
+public class JetLagCalculator {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Enter number of hours of travel:");
+        double hoursTravelled = scan.nextInt();
+        System.out.println("Enter number of time zones crossed:");
+        double zonesCrossed = scan.nextInt();
+        System.out.println("Enter time using a 24 hour clock\nEnter the departure time:");
+        double depart = scan.nextInt();
+        System.out.println("Enter time using a 24 hour clock\nEnter the arrival time");
+        double arrive = scan.nextInt();
+
+        if( depart >= 8 && depart < 12) 
+            depart = 0;
+        else if (depart >= 12 && depart < 18)
+            depart = 1;
+        else if (depart >= 18 && depart < 22)
+            depart = 3;
+        else if ((depart >= 22 && depart <= 23) || (depart >= 0 && depart < 1))
+            depart = 4;
+        else if (depart >= 1 && depart < 8)
+            depart = 5;
+
+            if( arrive >= 8 && arrive < 12) 
+            arrive = 4;
+        else if (arrive >= 12 && arrive < 18)
+            arrive = 2;
+        else if (arrive >= 18 && arrive < 22)
+            arrive = 0;
+        else if ((arrive >= 22 && arrive <= 23) || (arrive >= 0 && arrive < 1))
+            arrive = 1;
+        else if (arrive >= 1 && arrive < 8)
+            arrive = 3;
+        
+        System.out.printf("\n1. Hours = %.0f", hoursTravelled);
+        System.out.printf("\n2. Zones = %.0f", zonesCrossed);
+        System.out.printf("\n3. Depart = %.0f", depart);
+        System.out.printf("\n4. Arrive = %.0f", arrive);
+
+        double daysofrecovery = (hoursTravelled/2 + (zonesCrossed-3) + depart + arrive)/10;
+        System.out.printf("\nDays of recovery is %.2f days", daysofrecovery);
+    }
+}
