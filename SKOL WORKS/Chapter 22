@@ -1,0 +1,149 @@
+import java.util.Scanner;
+public class AddingIntegers {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Enter first integer (enter 0 to quit):");
+        int firstInt = scan.nextInt();
+        
+        if (firstInt == 0) {
+            System.out.println("No integers were entered.");
+            System.out.println("bye");
+            return;
+        }
+        
+        int sum = firstInt;
+        int nextInt;
+        
+        do {
+            System.out.println("Enter an integer (or 0 to quit):");
+            nextInt = scan.nextInt();
+            sum += nextInt;
+        } while (nextInt != 0);
+
+        System.out.println("Sum of the integers: " + sum);
+        System.out.println("bye");
+    }
+}
+
+import java.util.Scanner;
+
+public class MilesperGallon {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        while (true) {
+            System.out.println("Initial miles:");
+            int initialMiles = scanner.nextInt();
+            
+            if (initialMiles < 0) {
+                System.out.println("bye");
+                break;
+            }
+            
+            System.out.println("Final miles:");
+            int finalMiles = scanner.nextInt();
+            
+            System.out.println("Gallons:");
+            int gallons = scanner.nextInt();
+            
+            double milesPerGallon = (finalMiles - initialMiles) / (double) gallons;
+            
+            System.out.println("Miles per Gallon: " + milesPerGallon);
+            System.out.println();
+        }
+    }
+}
+
+
+import java.util.Scanner;
+
+public class InrangeAdder {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Low end of range:");
+        int low = scanner.nextInt();
+        System.out.println("High end of range:");
+        int high = scanner.nextInt();
+
+        int sumInRange = 0;
+        int sumOutOfRange = 0;
+
+        System.out.println("Enter data:");
+
+        while (true) {
+            int data = scanner.nextInt();
+            if (data == 0) {
+                break;
+            }
+            if (data >= low && data <= high) {
+                sumInRange += data;
+            } else {
+                sumOutOfRange += data;
+            }
+        }
+
+        System.out.println("Sum of in range values: " + sumInRange);
+        System.out.println("Sum of out of range values: " + sumOutOfRange);
+    }
+}
+
+import java.util.Scanner;
+
+public class ShippingCostCalculator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("Weight of Order:");
+            double weight = scanner.nextDouble();
+
+            if (weight <= 0) {
+                System.out.println("bye");
+                break;
+            }
+
+            double shippingCost;
+
+            if (weight <= 10) {
+                shippingCost = 3.00;
+            } else {
+                shippingCost = 3.00 + 0.25 * (weight - 10);
+            }
+
+            System.out.println("Shipping Cost: $" + String.format("%.2f", shippingCost));
+        }
+    }
+}
+
+import java.util.Scanner;
+
+public class AreaofRectangles {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("First corner X coordinate:");
+            int x1 = scanner.nextInt();
+            System.out.println("First corner Y coordinate:");
+            int y1 = scanner.nextInt();
+            System.out.println("Second corner X coordinate:");
+            int x2 = scanner.nextInt();
+            System.out.println("Second corner Y coordinate:");
+            int y2 = scanner.nextInt();
+
+            if (x1 == x2 || y1 == y2) {
+                System.out.println("Width:  0  Height: 0   Area: 0");
+                System.out.println("finished");
+                break;
+            }
+
+            int width = Math.abs(x2 - x1);
+            int height = Math.abs(y2 - y1);
+            int area = width * height;
+
+            System.out.println("Width:  " + width + "  Height: " + height + "   Area: " + area);
+        }
+    }
+}
+
