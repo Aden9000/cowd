@@ -43,3 +43,30 @@ public class JetLagCalculator {
         System.out.printf("\nDays of recovery is %.2f days", daysofrecovery);
     }
 }
+
+
+import java.util.Scanner;
+
+public class AddingupSquaresandCubes {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Enter upper limit:");
+        int n = scan.nextInt();
+        int i = 1;
+        int cubes;
+        int sumSquares;
+        int sumCubes;
+        int squares;
+        System.out.println("Squares:\tCubes:");
+        while (i <= n) {
+            cubes = i * i * i;
+            squares = i * i;
+            System.out.printf("\n%6d\t\t%6d", squares, cubes);
+            i++;
+        }
+        sumSquares = n * (n + 1) * ((2 * n) + 1) / 6;
+        sumCubes = (n * n) * ((n + 1) * (n + 1)) / 4;
+        System.out.println("\nThe sum of Squares is "+ sumSquares);
+        System.out.println("The sum of Cubes is "+ sumCubes);
+    }
+}
