@@ -1,1 +1,77 @@
+import java.util.Scanner;
 
+public class ModifiedMillionDollars {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        double dollars;
+        double rate;
+        double initialInvestment;
+        double annualContribution;
+        int year = 1;
+
+        // Get the initial investment, interest rate, and annual contribution from the user
+        System.out.print("Enter the initial investment: $");
+        initialInvestment = scan.nextDouble();
+        System.out.print("Enter the interest rate in percent: ");
+        rate = scan.nextDouble() / 100.0;
+        System.out.print("Enter the annual contribution: $");
+        annualContribution = scan.nextDouble();
+
+        dollars = initialInvestment;
+
+        while (dollars < 1000000) {
+            // Add another year's interest
+            dollars += dollars * rate;
+
+            // Add in this year's contribution
+            dollars += annualContribution;
+
+            System.out.println("After year " + year + ", you have: $" + dollars);
+
+            year++;
+        }
+
+        System.out.println("After " + (year - 1) + " years, you will have exceeded $1,000,000.");
+    }
+}
+
+
+import java.text.DecimalFormat;
+import java.util.Scanner;
+
+public class CreditCardBill {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        DecimalFormat numform = new DecimalFormat();
+
+        System.out.print("Enter the beginning balance: $");
+        double balance = scanner.nextDouble();
+
+        System.out.print("Enter the monthly interest rate (in percent): ");
+        double monthlyInterestRate = scanner.nextDouble() / 100.0;
+
+        System.out.print("Enter the monthly payment: $");
+        double monthlyPayment = scanner.nextDouble();
+
+        double totalPayments = 0.0;
+        int month = 0;
+
+        while (balance > 0) {
+            month++;
+            double interest = balance * monthlyInterestRate;
+            balance += interest;
+            balance -= monthlyPayment;
+            totalPayments += monthlyPayment;
+
+            if (balance < monthlyPayment) {
+                monthlyPayment = balance;
+                totalPayments += monthlyPayment;
+                balance = 0;
+            }
+
+            System.out.println("Month: " + month + "\tbalance: $" + numform.format(balance) + "\ttotal payments: $" + numform.format(totalPayments));
+        }
+
+        System.out.println("Final payment: $" + numform.format(monthlyPayment));
+    }
+}
