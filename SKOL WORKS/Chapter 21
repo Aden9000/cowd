@@ -182,32 +182,27 @@ import java.util.Scanner;
 
 public class FloatFactorial {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.print("Enter a non-negative integer (N): ");
-        long N = scanner.nextLong();
-
-        if (N < 0) {
-            System.out.println("Factorial is not defined for negative numbers.");
-            return;
-        }
-
+        Scanner scan = new Scanner(System.in);
+        long N;
         double fact = 1;
-        for (long i = 1; i <= N; i++) {
-            fact *= i;
+
+        System.out.print("Enter N: ");
+        N = scan.nextLong();
+
+        if (N >= 0) {
+            while (N > 1) {
+                fact = fact * N;
+                N = N - 1;
+            }
+            double previousFactorial = fact / (N + 1); // Calculate (N-1)!
+            double factRatio = fact / previousFactorial; // Calculate N! / (N-1)!
+            System.out.println("N! / (N-1)! approximation is " + factRatio);
+        } else {
+            System.out.println("N must be zero or greater");
         }
-
-        System.out.println("Factorial of " + N + " is: " + fact);
-
-        double previousFactorial = 1;
-        for (long i = 2; i <= N; i++) {
-            previousFactorial *= i;
-        }
-
-        double factRatio = fact / previousFactorial;
-        System.out.println("Approximation of N: " + factRatio);
     }
 }
+
 
 
 import java.util.Scanner;
