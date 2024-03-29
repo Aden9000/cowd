@@ -89,3 +89,183 @@ public class Powerofanumber {
             System.out.printf("%.1f raised to the power %d is:  %.6f", x, n, xn);
     }
 }
+
+
+import java.util.Scanner;
+
+public class WedgeofStars {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Enter the initial number of stars");
+        int stars = scan.nextInt();
+        int i;
+        int j;
+        
+        for (i = 0; i < stars; i++){
+            for (j = 0; j < stars - i; j++){
+                System.out.printf("*");
+                
+            }
+            System.out.println();
+        }
+    }    
+}
+
+public class PineTree {
+    public static void main(String[] args) {
+        int i ;
+        int j ;
+        int k ;
+        int rows = 8;
+        for (i = 0; i < rows; i++) {
+            for (j = 0; j < rows - i + 1 ; j++) {
+                System.out.printf(" ");  
+            }
+            for (k = 0; k <= i; k++){
+                System.out.printf("* ");
+            }
+            System.out.printf("\n");
+        }
+
+        for (i = 0; i < 3; i++)
+            System.out.println("        ***");
+    }
+}
+
+import java.util.Scanner;
+
+public class WallpaperCalculator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter the dimensions of the room (in feet):");
+        System.out.print("Width: ");
+        double width = scanner.nextDouble();
+        System.out.print("Height: ");
+        double height = scanner.nextDouble();
+        System.out.print("Length: ");
+        double length = scanner.nextDouble();
+
+        double roomArea = 2 * (width * height + height * length);
+
+        System.out.print("Enter the number of openings (windows, doors, etc.): ");
+        int numOpenings = scanner.nextInt();
+
+        double openingsArea = 0;
+        for (int i = 1; i <= numOpenings; i++) {
+            System.out.println("Enter the dimensions of opening " + i + " (in feet):");
+            System.out.print("Width: ");
+            double openingWidth = scanner.nextDouble();
+            System.out.print("Height: ");
+            double openingHeight = scanner.nextDouble();
+            openingsArea += openingWidth * openingHeight;
+        }
+
+        double areaToCover = roomArea - openingsArea;
+
+        double rollWidth = 27.0 / 12.0;
+        double rollLength = 4.5 * 3.0;
+        double rollArea = rollWidth * rollLength;
+        int rollsNeeded = 0;
+        double remainingArea = areaToCover;
+
+        while (remainingArea > 0) {
+            rollsNeeded++;
+            remainingArea -= rollArea;
+        }
+
+        System.out.println("You will need " + rollsNeeded + " roll/s of wallpaper.");
+    }
+}
+
+import java.util.Scanner;
+
+public class FloatFactorial {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter a non-negative integer (N): ");
+        long N = scanner.nextLong();
+
+        if (N < 0) {
+            System.out.println("Factorial is not defined for negative numbers.");
+            return;
+        }
+
+        double fact = 1;
+        for (long i = 1; i <= N; i++) {
+            fact *= i;
+        }
+
+        System.out.println("Factorial of " + N + " is: " + fact);
+
+        double previousFactorial = 1;
+        for (long i = 2; i <= N; i++) {
+            previousFactorial *= i;
+        }
+
+        double factRatio = fact / previousFactorial;
+        System.out.println("Approximation of N: " + factRatio);
+    }
+}
+
+
+import java.util.Scanner;
+
+public class Permutations {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter a non-negative integer N: ");
+        long N = scanner.nextLong();
+
+        System.out.print("Enter a non-negative integer R (R <= N): ");
+        long R = scanner.nextLong();
+
+        if (N < 0 || R < 0 || R > N) {
+            System.out.println("Error: N and R must be non-negative, and R must be less than or equal to N.");
+            return;
+        }
+
+        long permutation = 1;
+        for (long i = N; i > N - R; i--) {
+            permutation *= i;
+        }
+
+        System.out.println("Permutation of " + N + " objects taken " + R + " at a time is: " + permutation);
+    }
+}
+
+
+import java.util.Random;
+import java.util.Scanner;
+
+public class MultiplicationQuiz {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Random random = new Random();
+
+        int correctAnswers = 0;
+
+        for (int i = 0; i < 10; i++) {
+            int num1 = random.nextInt(10); // Generate random digit 0-9
+            int num2 = random.nextInt(10);
+
+            System.out.print("What is " + num1 + " * " + num2 + "? ");
+            int userAnswer = scanner.nextInt();
+
+            int correctAnswer = num1 * num2;
+            if (userAnswer == correctAnswer) {
+                System.out.println("Right!");
+                correctAnswers++;
+            } else {
+                System.out.println("Wrong. " + num1 + " * " + num2 + " is " + correctAnswer);
+            }
+        }
+
+        System.out.println("\nYou got " + correctAnswers + " out of 10 questions correct!");
+    }
+}
+
+
