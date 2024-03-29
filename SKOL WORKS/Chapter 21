@@ -70,3 +70,22 @@ public class AddingupSquaresandCubes {
         System.out.println("The sum of Cubes is "+ sumCubes);
     }
 }
+
+
+import java.util.Scanner;
+
+public class Powerofanumber {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Enter X");
+        double x = scan.nextDouble();
+        System.out.println("Enter N");
+        int n = scan.nextInt();
+        double xn = Math.pow(x, n);
+
+        if (n < 0)
+            System.out.println("N must be a positive integer.");
+        else
+            System.out.printf("%.1f raised to the power %d is:  %.6f", x, n, xn);
+    }
+}
