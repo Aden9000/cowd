@@ -1,0 +1,53 @@
+public class SheepHerdSize {
+    public static void main(String[] args) {
+        int yearsSupervised = 0; // Initialize the counter for years supervised
+        double power = 1.0; // Initialize the variable to represent (0.83)^t
+
+        // Loop through years from 0 to 25
+        for (int t = 0; t <= 25; t++) {
+            double N = 220.0 / (1 + 10 * power); // Calculate the sheep population for the current year
+
+            // Print the population for the current year
+            System.out.printf("Year %d: Population = %.2f\n", t, N);
+
+            // Check if the population is below 80
+            if (N <= 80) {
+                yearsSupervised = t + 1; // Set the number of years supervised
+                break; // Exit the loop
+            }
+
+            power *= 0.83; // Update power for the next iteration
+        }
+
+        // Print the number of years the sheep herd must be supervised
+        System.out.println("Years supervised: " + yearsSupervised);
+    }
+}
+
+
+import java.util.Scanner;
+
+public class SumofOddintegers1toN {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Ask the user for an integer N
+        System.out.print("Enter an integer N: ");
+        int N = scanner.nextInt();
+
+        // Initialize variables to store the sum of odd integers and N squared
+        int sumOfOdds = 0;
+        int squareOfN = N * N;
+
+        // Calculate the sum of all odd integers from 1 to N
+        for (int i = 1; i <= N; i += 2) {
+            sumOfOdds += i;
+        }
+
+        // Display the results
+        System.out.println("Sum of all odd integers from 1 to " + N + ": " + sumOfOdds);
+        System.out.println(N + " squared: " + squareOfN);
+
+        scanner.close();
+    }
+}
