@@ -57,3 +57,240 @@ public class CharacterCounter {
 }
 
 
+import java.util.Scanner;
+public class CharacterCounterwithFileInput {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int vowels = 0;
+        int punctuation = 0;
+        int spaces = 0;
+        int consonants = 0;
+        int totalCount = 0;
+
+        System.out.println("Input lines (Enter 'q' to quit):");
+
+        while (true) {
+            String line = scanner.nextLine();
+            if (line.equals("q")) {
+                break;
+            }
+            for (int i = 0; i < line.length(); i++) {
+                char ch = Character.toLowerCase(line.charAt(i));
+                switch (ch) {
+                    case 'a':
+                    case 'e':
+                    case 'i':
+                    case 'o':
+                    case 'u':
+                        vowels++;
+                        break;
+                    case '.':
+                    case ',':
+                    case '?':
+                    case ';':
+                    case '!':
+                    case ':':
+                    case '\'':
+                    case '(':
+                    case ')':
+                    case '[':
+                    case ']':
+                    case '"':
+                    case '-':
+                    case '_':
+                    case '/':
+                    case '@':
+                    case '{':
+                    case '}':
+                    case '*':
+                        punctuation++;
+                        break;
+                    case ' ':
+                        spaces++;
+                        break;
+                    default:
+                        if (Character.isLetter(ch)) {
+                            consonants++;
+                        }
+                }
+                totalCount++;
+            }
+        }
+
+        // Print raw counts
+        System.out.println("\nRaw Counts:");
+        System.out.println("Consonants: " + consonants);
+        System.out.println("Vowels: " + vowels);
+        System.out.println("Punctuation: " + punctuation);
+        System.out.println("Spaces: " + spaces);
+        System.out.println("Total characters: " + totalCount);
+
+        // Print percentages
+        System.out.println("\nPercentages:");
+        System.out.printf("Consonants: %.2f%%\n", (consonants / (double) totalCount) * 100);
+        System.out.printf("Vowels: %.2f%%\n", (vowels / (double) totalCount) * 100);
+        System.out.printf("Punctuation: %.2f%%\n", (punctuation / (double) totalCount) * 100);
+        System.out.printf("Spaces: %.2f%%\n", (spaces / (double) totalCount) * 100);
+
+        scanner.close();
+    }
+}
+
+
+import java.util.Scanner;
+
+public class InternetAcronymns {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+
+        System.out.println("Enter a line of text:");
+        String inputLine = scan.nextLine();
+
+        // Create a scanner to read input tokens one by one
+        Scanner tokenScanner = new Scanner(inputLine);
+
+        StringBuilder outputLine = new StringBuilder();
+
+        // Process each token in the input line
+        while (tokenScanner.hasNext()) {
+            String token = tokenScanner.next().toUpperCase();
+
+            switch (token) {
+                case "LOL":
+                    outputLine.append("Laugh Out Loud");
+                    break;
+
+                case "BFF":
+                    outputLine.append("Best Friends Forever");
+                    break;
+
+                case "SO":
+                    outputLine.append("Significant Other");
+                    break;
+
+                case "THS":
+                case "THKS":
+                case "TX":
+                    outputLine.append("Thanks");
+                    break;
+
+                // Add more acronyms here
+                case "FYI":
+                    outputLine.append("For Your Information");
+                    break;
+
+                case "TGIF":
+                    outputLine.append("Thank God It's Friday");
+                    break;
+
+                case "IIRC":
+                    outputLine.append("If I Recall Correctly");
+                    break;
+
+                default:
+                    outputLine.append(token);
+                    break;
+            }
+
+            // Add a space after each token
+            outputLine.append(" ");
+        }
+
+        // Close the token scanner
+        tokenScanner.close();
+
+        // Print the output line
+        System.out.println("Output line:");
+        System.out.println(outputLine);
+
+        // Close the main scanner
+        scan.close();
+    }
+}
+
+
+import java.util.Random;
+
+public class RandomNames {
+    public static void main(String[] args) {
+        Random random = new Random();
+
+        // Generate a random integer between 1 and 12 for the first name
+        int firstNameCase = random.nextInt(12) + 1;
+
+        // Generate a random integer between 1 and 12 for the last name
+        int lastNameCase = random.nextInt(12) + 1;
+
+        // Generate first and last names based on the random cases
+        String firstName = generateFirstName(firstNameCase);
+        String lastName = generateLastName(lastNameCase);
+
+        // Print the generated character's name
+        System.out.println("Generated Character Name:");
+        System.out.println(firstName + " " + lastName);
+    }
+
+    // Method to generate first name based on the given case
+    public static String generateFirstName(int firstNameCase) {
+        switch (firstNameCase) {
+            case 1:
+                return "John";
+            case 2:
+                return "Emily";
+            case 3:
+                return "Michael";
+            case 4:
+                return "Sophia";
+            case 5:
+                return "William";
+            case 6:
+                return "Emma";
+            case 7:
+                return "James";
+            case 8:
+                return "Olivia";
+            case 9:
+                return "Alexander";
+            case 10:
+                return "Ava";
+            case 11:
+                return "Daniel";
+            case 12:
+                return "Isabella";
+            default:
+                return "Unknown";
+        }
+    }
+
+    // Method to generate last name based on the given case
+    public static String generateLastName(int lastNameCase) {
+        switch (lastNameCase) {
+            case 1:
+                return "Smith";
+            case 2:
+                return "Johnson";
+            case 3:
+                return "Williams";
+            case 4:
+                return "Jones";
+            case 5:
+                return "Brown";
+            case 6:
+                return "Davis";
+            case 7:
+                return "Miller";
+            case 8:
+                return "Wilson";
+            case 9:
+                return "Taylor";
+            case 10:
+                return "Anderson";
+            case 11:
+                return "Thomas";
+            case 12:
+                return "Jackson";
+            default:
+                return "Unknown";
+        }
+    }
+}
