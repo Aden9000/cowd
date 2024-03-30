@@ -75,3 +75,128 @@ public class CreditCardBill {
         System.out.println("Final payment: $" + numform.format(monthlyPayment));
     }
 }
+
+import java.util.Scanner;
+
+public class DrugPotency {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter the initial effectiveness of the drug:");
+        double effectiveness = scanner.nextDouble();
+        int months = 0;
+
+        while (effectiveness >= 50.0) {
+            System.out.printf("month: %d \teffectiveness: %.10f\n", months, effectiveness);
+            effectiveness *= 0.96; // Decrease effectiveness by 4% each month
+            months++;
+
+            if (effectiveness < 50.0) {
+                System.out.printf("month: %d \teffectiveness: %.10f DISCARDED\n", months, effectiveness);
+                break; // Stop the loop when effectiveness falls below 50%
+            }
+        }
+
+        System.out.printf("The drug can remain in storage for %d months.", months);
+
+    }
+}
+
+import java.util.Scanner;
+
+public class ex {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in); 
+        System.out.println("Enter x:"); // Prompt the user to enter the value of x
+        double x = scanner.nextDouble(); 
+
+        double sum = 1.0; 
+        double term = 1.0; 
+        int n = 1; 
+        // Loop to calculate successive terms until the absolute value of the term is less than 1.0E-12
+        while (Math.abs(term) >= 1.0E-12) {
+            term *= x / n; 
+            sum += term; 
+            n++; 
+        }
+
+        double myExp = sum; 
+        double realExp = Math.exp(x); // Calculate the value of e^x using Math.exp()
+
+        // Print the calculated and actual values of e^x for comparison
+        System.out.println("\nmy   e^x: " + myExp);
+        System.out.println("real e^x: " + realExp);
+
+    }
+}
+
+
+import java.util.Scanner;
+
+public class oneoverBbyNewtonsMethod {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter a positive real number B:");
+        double B = scanner.nextDouble();
+
+        // Check if B is too large for the program to handle
+        if (B <= 0 || B >= 1e10) {
+            System.out.println("Sorry, this program cannot handle B that large or zero.");
+        } else {
+            double x = 0.000001; // Initial tiny guess
+            double previousGuess = 0.0;
+            double tolerance = 1e-12; // Tolerance for ending condition
+
+            while (Math.abs(x - previousGuess) > tolerance) {
+                previousGuess = x;
+                x = x * (2 - B * x);
+            }
+
+            System.out.println("1/" + B + " is approximately: " + x);
+        }
+
+        scanner.close();
+    }
+}
+
+
+import java.util.Scanner;
+
+public class HailstoneNumbers {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter a positive integer N:");
+        int N = scanner.nextInt();
+
+        int maxLength = 0;
+        int maxNumber = 0;
+        int length = 0;
+
+        while (N != 1) {
+            length++;
+            if (N % 2 == 0) { // N is even
+                N /= 2;
+            } else { // N is odd
+                N = 3 * N + 1;
+            }
+
+            if (N > maxNumber) {
+                maxNumber = N;
+            }
+
+            if (N == 1) {
+                maxLength = Math.max(maxLength, length);
+                System.out.println(N);
+                break;
+            }
+
+            System.out.println(N);
+        }
+
+        System.out.println("Length of the sequence: " + (length + 1)); // Add 1 to include the initial N
+        System.out.println("Maximum number in the sequence: " + maxNumber);
+        System.out.println("Maximum length of sequence found: " + maxLength);
+
+       scanner.close();
+    }
+}
