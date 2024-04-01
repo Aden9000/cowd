@@ -1,0 +1,68 @@
+/*
+ Name: Aldrin Meller T. Basalo.
+
+ This program Calculates the Midterm of Final Grades of a student and determines if they passed or not.
+ 
+ Date: April 2, 2024
+ */
+import java.util.Scanner;
+public class GradingSystem {
+    public static void main (String [] args){
+        int options;
+        do {
+            //Input 1, 2, or 3
+            Scanner scan = new Scanner(System.in);
+            System.out.println("\nGRADING SYSTEM");
+            System.out.println("Options:");
+            System.out.println("[1] Compute Midterm Grade.");
+            System.out.println("[2] Compute Final Grade.");
+            System.out.println("[3] Quit App.");
+            System.out.printf("Press 1 or 2 or 3: ");
+            options = scan.nextInt();
+            //if Input is not valid, program will warn you and asks for correct Input.
+            if (options < 1 || options > 3)
+                do{
+                    System.out.println("*Invalid Input*");
+                    System.out.println("Try again.");
+                    System.out.printf("Press 1 or 2 or 3: ");
+                    options = scan.nextInt();
+                }while(options < 1 || options > 3);
+            //Calculates and determines remarks for Midterm or Finals.
+            switch (options) {
+                case 1://Calculates and determines Grade for Midterm.
+                    System.out.printf("Enter your Quiz Grade: ");
+                    double quizGrade = scan.nextDouble();
+                    System.out.printf("Enter your Quiz Grade: ");
+                    double labworksGrade = scan.nextDouble();
+                    System.out.printf("Enter your Quiz Grade: ");
+                    double midtermExamGrade = scan.nextDouble();
+                    //Calculates average.
+                    double midtermGrade = (quizGrade + labworksGrade + midtermExamGrade) / 3;
+                    //Prints results.
+                    System.out.printf("Midterm Grade: %.2f\n", midtermGrade);
+                    if (midtermGrade < 3)//Determines if passed or failed.
+                        System.out.println("Remarks: PASSED");
+                    else 
+                        System.out.println("Remarks: FAILED");
+                    break;
+                case 2://Calculates and determines Grade for Finals.
+                    System.out.printf("Enter your Quiz Grade: ");
+                    double quizfGrade = scan.nextDouble();
+                    System.out.printf("Enter your Quiz Grade: ");
+                    double labworksfGrade = scan.nextDouble();
+                    System.out.printf("Enter your Quiz Grade: ");
+                    double finalExamGrade = scan.nextDouble();
+                    //Calculates average.
+                    double finalGrade = (quizfGrade + labworksfGrade + finalExamGrade) / 3;
+                    //Prints results.
+                    System.out.printf("Final Grade: %.2f\n", finalGrade);
+                    if (finalGrade < 3)//Determines if passed or failed.
+                        System.out.println("Remarks: PASSED");
+                    else 
+                        System.out.println("Remarks: FAILED");
+                    break;
+            }
+        }while (options == 1 || options == 2);
+        System.out.println("\n*App Closed*");//App closes if '3' is inputed.
+    }
+}
