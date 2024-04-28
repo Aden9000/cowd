@@ -1,0 +1,33 @@
+/*
+ Name: Aldrin Meller T. Basalo.
+
+ This program asks for user's name and then writes it back with the first name as entered, and the last name all in capital letters. 
+
+ Date: April 29, 2024
+ */
+import java.util.Scanner;
+
+public class NameEcho {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        // Input user's Name
+        System.out.printf("Enter your name: ");
+        String name = scan.nextLine();
+        // Remove leading/trailing whitespaces
+        name = name.trim();
+        // Find the index of a "space" in the name
+        int space = name.indexOf(" ");
+        // Test that the value returned from indexOf() is greater than zero.
+        if (space > 0) {
+            // Find first name
+            String firstName = name.substring(0, space);
+            // Find last name and make it all caps
+            String lastName = name.substring(space).toUpperCase();
+            // Output first name and last name
+            System.out.println(firstName.concat(lastName));
+        } else
+            // Output 1 all caps name if there is only 1 name
+            System.out.println(name.toUpperCase());
+
+    }
+}
