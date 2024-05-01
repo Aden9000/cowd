@@ -31,3 +31,30 @@ public class NameEcho {
 
     }
 }
+
+
+/*
+ Name: Aldrin Meller T. Basalo.
+
+ This program asks the user to enter a string, and the program echos it to the monitor with one character per line.
+
+ Date: April 29, 2024
+ */
+import java.util.Scanner;
+
+public class charAt {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        // Input a String
+        System.out.println("Enter a string: ");
+        String name = scan.nextLine();
+        // Identify how many charaters to print
+        int length = name.length();
+        int i = 0;
+        // Print each Character.
+        while (i < length) {
+            System.out.println(name.charAt(i));
+            i++;
+        }
+    }
+}
