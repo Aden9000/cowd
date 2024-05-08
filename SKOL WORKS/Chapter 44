@@ -58,3 +58,36 @@ public class charAt {
         }
     }
 }
+
+
+/*
+ Name: Aldrin Meller T. Basalo.
+
+ This program asks for the user's name and then writes that name to the monitor with either "Ms." or "Mr." in front, 
+ depending if the name is for a female or male. All other names will be echoed without a title.
+ The program continues looping until the user hits "enter" without first typing a name.
+ 
+ Date: April 29, 2024
+ */
+import java.util.Scanner;
+
+public class TitleApplier {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        String name;
+        do{
+            //Input a name
+            System.out.println("Enter a name:");
+            name = scan.nextLine();
+            //Identify if name is a "Mr" or a "Mrs" if not then echo name
+            if(name.startsWith("Amy") || name.startsWith("Buffy") || name.startsWith("Cathy"))
+                System.out.println("Mrs. " + name);
+            else if(name.startsWith("Elroy") || name.startsWith("Fred") || name.startsWith("Graham"))
+                System.out.println("Mr. " + name);
+            else
+                System.out.println(name);
+
+        }while(!name.isEmpty());//Ends program if user inputs nothing
+        System.out.println("bye");
+    }
+}
