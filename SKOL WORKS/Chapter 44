@@ -117,3 +117,24 @@ public class MicrowaveMenu {
         System.out.println("\nYour time-> "+minute+":" + decform.format(seconds));
     }
 }
+
+
+import java.util.Scanner;
+
+public class WordTriangle {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        System.out.printf("Enter a word --> ");
+        String word = scan.nextLine();
+        int length = word.length();
+
+        for (int i = 0; i < length; i++) {
+            // Print leading spaces
+            for (int j = 0; j < i; j++) {
+                System.out.printf(" ");
+            }
+            // Print the modified word
+            System.out.println(word.substring(i, length - i));
+        }
+    }
+}
