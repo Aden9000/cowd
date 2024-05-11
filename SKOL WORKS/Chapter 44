@@ -119,11 +119,20 @@ public class MicrowaveMenu {
 }
 
 
+/*
+ Name: Aldrin Meller T. Basalo.
+
+ This program asks the user for a word, and then writes out that word once per line 
+ but for each line replace the first character of the word with a space and remove the last character of the word. 
+ 
+ Date: April 29, 2024
+ */
 import java.util.Scanner;
 
 public class WordTriangle {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
+        //Input a word
         System.out.printf("Enter a word --> ");
         String word = scan.nextLine();
         int length = word.length();
