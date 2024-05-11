@@ -122,6 +122,52 @@ public class MicrowaveMenu {
 /*
  Name: Aldrin Meller T. Basalo.
 
+ This program repeatedly asks the user for a proposed password until the user enters an acceptable password.
+ 
+ Date: April 29, 2024
+ */
+import java.util.Scanner;
+
+public class PasswordChecker {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        Boolean pass = false;
+        Boolean upCase = false;
+        Boolean lowCase = false;
+        Boolean digits = false;
+        do {
+            System.out.println("Enter your password:");// Input Password
+            String passW = scan.nextLine();
+
+            int length = passW.length();
+            // Identify if Password is acceptable
+            for (int i = 0; i < length; i++) {
+                if (length >= 7) {// check if password is at least 7 characters long
+                    pass = true;
+                }
+                if (Character.isLowerCase(passW.charAt(i))) {// check if password has lower case characters
+                    lowCase = true;
+                }
+                if (Character.isUpperCase(passW.charAt(i))) {// check if password has upper case characters
+                    upCase = true;
+                }
+                if (Character.isDigit(passW.charAt(i))) {// check if password has digits
+                    digits = true;
+                }
+            }
+            // Output either password is acceptable or not
+            if ((pass && upCase && lowCase && digits) == true)
+                System.out.println("Acceptable password.");
+            else
+                System.out.println("That password is not acceptable.");
+        } while ((pass && upCase && lowCase && digits) == false);// End program if password is acceptable
+    }
+}
+
+
+/*
+ Name: Aldrin Meller T. Basalo.
+
  This program asks the user for a word, and then writes out that word once per line 
  but for each line replace the first character of the word with a space and remove the last character of the word. 
  
