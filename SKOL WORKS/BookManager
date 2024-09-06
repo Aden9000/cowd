@@ -1,0 +1,48 @@
+import java.util.Scanner;
+
+public class bookManager {
+    public static void main (String ... args){
+        Scanner scan = new Scanner(System.in);
+        Books book = null;
+        int choice;
+
+        do{
+            System.out.println("Menu:\n(1) Create Book\n(2) Borrow Book\n(3) Return Book\n(4) View Book Details\n(5) Exit Program");
+            choice = scan.nextInt();
+            scan.nextLine();
+            switch (choice) {
+                case 1:
+                    System.out.println("Enter book title: ");
+                    String title = scan.nextLine();
+                    System.out.println("Enter book author: ");
+                    String author = scan.nextLine();
+                    System.out.println("Enter book ISBN: ");
+                    String isbn = scan.nextLine();
+                    System.out.println("Enter number of available copies: ");
+                    int availableCopies = scan.nextInt();
+                    scan.nextLine();
+
+                    book = new Books(title, author, isbn, availableCopies);
+                    break;
+                case 2:
+                    System.out.println("Enter number of books to borrow: ");
+                    int borrowCount = scan.nextInt();
+                    book.borrowBook(borrowCount);  
+                    break;
+                case 3:
+                    System.out.println("Enter number of books to return: ");
+                    int returnCount = scan.nextInt();
+                    book.returnBook(returnCount);  
+                    break; 
+                case 4:
+                    System.out.println("Book Details: ");
+                    book.displayBookDetails();
+                    break;
+                default:
+                    if(choice > 5 || choice < 1 )    
+                    System.out.println("*Invalid choice*");
+                    
+            }
+        }while(choice != 5);        
+    }
+}
