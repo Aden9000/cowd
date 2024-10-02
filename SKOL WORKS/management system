@@ -1,0 +1,178 @@
+import java.util.ArrayList;
+public class Product{
+   private String productid;
+   private String productName;
+   private int quantity;
+   private double price;
+   
+   public Product(String productid, String productName, int quantity, double price){
+      this.productid = productid;
+      this.productName = productName;
+      this.quantity = quantity;
+      this.price = price;
+   }
+   
+   public void SetPrice(int price){
+      
+         this.price = price;
+   }
+   
+   public void SetQuantity(int quantity){
+      
+         this.quantity = quantity;
+   }
+   
+   public String getProdId(){
+      return this.productid;
+   }  
+   
+   public String getProductName(){
+      return this.productName;
+   }
+   
+   public int getQuantity(){
+      return this.quantity;
+   }
+
+   public double getPrice(){
+      return this.price;
+   }
+}
+
+class PerishableProduct extends Product{
+   String expireDate;
+   public PerishableProduct(String id,String name, int quantity, double price, String expireDate){
+      super(id, name, quantity, price);
+      this.expireDate = expireDate;
+        
+   }
+   
+   public void updateStock( int amount) throws InvalidQuantityException, InsufficientStockException{
+      if (amount < 0) {
+         throw new InvalidQuantityException("Quantity cannot be negative.");
+      }
+
+     int newquan = getQuantity() + amount;  
+      if (newquan > 100) {
+      throw new InsufficientStockException("Cannot exceed maximum quantity of 100 for perishable products.");
+      }  
+
+      SetQuantity(newquan);
+      System.out.println("Stock updated: "+ getProductName() + " new quantity is "+ getQuantity());
+   }
+}
+
+class NonPerishableProduct extends Product{
+   int shelfLife;
+   public NonPerishableProduct(String id,String name, int quantity, double price, int shelfLife){
+      super(id, name, quantity, price);
+      this.shelfLife = shelfLife;
+      
+   }
+
+   public  void updateStock( int amount) throws InvalidQuantityException{
+      if (amount < 0) {
+         throw new InvalidQuantityException("Quantity cannot be negative.");
+      }
+
+     int newquan = getQuantity() + amount; 
+     
+     SetQuantity(newquan);
+     System.out.println("Stock updated: "+ getProductName() + " new quantity is "+ getQuantity());
+    }
+}
+
+class InsufficientStockException extends Exception {
+   public InsufficientStockException(String message) {
+       super(message);
+   }
+}
+
+class InvalidQuantityException extends Exception {
+   public InvalidQuantityException(String message) {
+       super(message);
+   }
+}
+
+abstract class InventoryOperation{
+   ArrayList<Product> productList = new ArrayList<>();
+   
+   public abstract void addProduct(Product product);
+   public abstract void removeProduct(String productId) throws InsufficientStockException;
+}
+
+class Inventory extends InventoryOperation {
+   @Override
+   public void addProduct(Product product) {
+       productList.add(product);
+       System.out.println("Product added: " + product.getProductName() + " with quantity " + product.getQuantity());
+   }
+
+   @Override
+   public void removeProduct(String productId) throws InsufficientStockException {
+    boolean found = false;
+
+    
+    for (int i = 0; i < productList.size(); i++) {
+        Product product = productList.get(i);
+        if (product.getProdId().equals(productId)) {
+            productList.remove(i);  
+            System.out.println("Product " + productId + " removed successfully.");
+            found = true;
+            break;
+        }
+    }
+
+    if (!found) {
+        throw new InsufficientStockException("Product with ID " + productId + " does not exist.");
+    }
+   }
+}
+class Main{
+   public static void main (String... args){
+      
+      Inventory inventory = new Inventory();
+      
+      //Case 1
+      PerishableProduct apple = new PerishableProduct("P001", "Apple", 50, 0.5, "2024-12-31");
+      inventory.addProduct(apple);        
+      //Case 2   
+      NonPerishableProduct rice = new NonPerishableProduct("NP001", "Rice", 200, 1.0, 365);
+      inventory.addProduct(rice);          
+      //Case 3
+      try {
+         apple.updateStock(30); //within the limit
+      } catch (Exception e) {
+         System.out.println(e.getMessage());
+      }
+      
+      //Case 4
+      try {
+         apple.updateStock(30); // This will exceed the limit
+      } catch (Exception e) {
+         System.out.println(e.getMessage());
+      }
+
+      //Case 5
+      
+      try {
+         inventory.removeProduct("P001");
+     } catch (InsufficientStockException e) {
+         System.out.println(e.getMessage());
+     }
+
+     //Case 6
+     try {
+      inventory.removeProduct("P001"); // Attempting to remove more than available
+     } catch (InsufficientStockException e) {
+      System.out.println(e.getMessage());
+     }
+
+     //Case 7
+     try {
+      apple.updateStock(-10);
+     } catch (Exception e) {
+      System.out.println(e.getMessage());
+     }
+   }
+}
