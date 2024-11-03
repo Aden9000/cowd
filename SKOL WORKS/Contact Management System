@@ -1,0 +1,175 @@
+import java.util.Scanner;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+
+class ContactManagementSystem {
+    Scanner scan = new Scanner(System.in);
+    
+    public void addcontact(String contact){
+        try{
+            FileWriter writer = new FileWriter("contacts.txt", true);
+            writer.write(contact +"\n");
+            System.out.println("Contact added succussfully...");
+            writer.close();
+        }catch(IOException e){
+            System.err.println(e.getMessage());
+        }    
+    }
+
+    public void viewcontacts(){
+        try{
+            BufferedReader reader = new BufferedReader(new FileReader("contacts.txt"));
+            String line = reader.readLine();
+            if((line ) == null){
+                System.out.println("Contacts Empty...");
+                reader.close();
+            }else {
+                System.out.println(line);
+                while((line = reader.readLine()) != null){
+                    System.out.println(line);
+                }
+            }    
+            reader.close();
+        }catch(IOException e){
+            System.err.println(e.getMessage());
+        }   
+    }
+       
+    public void updatecontact(String contact){
+        File originalFile = new File("contacts.txt");
+        File tempFile = new File("temporary.txt");
+        try{
+            
+            BufferedReader reader = new BufferedReader(new FileReader(originalFile));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
+            String line;
+            boolean contactfound = false;
+
+            while((line = reader.readLine()) != null){
+                if(line.contains(contact)){
+                    System.out.println("Enter new name: ");
+                    String newcontact = scan.nextLine();
+                    writer.write(line.replace(contact, newcontact));
+                    contactfound = true;
+                }else{
+                    writer.write(line);
+                }
+                writer.newLine();
+            }
+            if(!contactfound){
+                System.out.println("Contact does not exist...");
+            }else{
+                System.out.println("Contact successfully updated...");
+            }
+            reader.close();
+            writer.close();
+        }catch(IOException e){
+            System.err.println(e.getMessage());
+        } 
+
+        
+        if (originalFile.delete()) {
+            tempFile.renameTo(originalFile);
+        } else {
+            System.err.println("Could not delete the original file.");
+        }
+        
+    }
+
+    public void deletecontact(String contact){
+        File originalFile = new File("contacts.txt");
+        File tempFile = new File("temporary.txt");
+        try{
+            
+            BufferedReader reader = new BufferedReader(new FileReader(originalFile));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
+            String line;
+            boolean contactfound = false;
+
+            while((line = reader.readLine()) != null){
+                if(line.contains(contact)){
+                    contactfound = true;
+                    continue;
+                }   
+                writer.write(line);
+                writer.newLine();
+            }
+            if(!contactfound){
+                System.out.println("Contact does not exist...");
+            }else{
+                System.out.println("Contact successfully deleted...");
+            }
+            reader.close();
+            writer.close();
+        }catch(IOException e){
+            System.err.println(e.getMessage());
+        } 
+
+        
+        if (originalFile.delete()) {
+            tempFile.renameTo(originalFile);
+        } else {
+            System.err.println("Could not delete the original file.");
+        }
+    }
+} 
+
+
+*********************************************************************************************************************
+MAIN:
+
+import java.io.File;
+import java.io.IOException;
+import java.util.Scanner;
+
+public class Menu {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        ContactManagementSystem contacts = new ContactManagementSystem();
+        boolean loop = true;
+        try{
+            File file = new File("contacts.txt");
+            file.createNewFile();
+       
+            while(loop){
+            System.out.println("\nContact Management System\r\n" + "1. Add Contact\r\n" + "2. View Contacts\r\n" + "3. Update Contact\r\n" + "4. Delete Contact\r\n" + "5. Exit\r\n" + "Choose an option:");
+            String choice = scan.nextLine();
+                switch(choice){
+                    case "1" : 
+                        System.out.println("Enter contact name: ");
+                        String contact = scan.nextLine();
+                        contacts.addcontact(contact);
+                    break;
+                    case "2" :
+                        System.out.println("Contacts: ");
+                        contacts.viewcontacts();
+                    break;
+                    case "3" :
+                        System.out.println("Enter the name of the contact to update: ");
+                        String contacto = scan.nextLine();
+                        contacts.updatecontact(contacto);
+                    break;
+                    case "4" :
+                        System.out.println("Enter the name of the contact to delete: ");
+                        String contotacto = scan.nextLine();
+                        contacts.deletecontact(contotacto);
+                    break;
+                    case "5":
+                        System.out.println("Exiting...");
+                        loop = false;
+                    break;
+                    default:
+                    System.out.println("Invalid Input, pls try agin");
+                    break;
+                }
+            }
+        
+        }catch(IOException e){
+            System.err.println(e.getMessage());
+        }
+    }
+}
