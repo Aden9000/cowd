@@ -1,0 +1,56 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
+public class HiddenButtonExample {
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            // Create the main frame
+            JFrame frame = new JFrame("Hidden Button Example");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setSize(400, 300);
+
+            // Create a hidden button
+            JButton secretButton = new JButton("Secret Button");
+            secretButton.setPreferredSize(new Dimension(150, 50));
+            secretButton.setVisible(false);  // Initially hidden
+
+            // Add action to button (just for demonstration)
+            secretButton.addActionListener(e -> JOptionPane.showMessageDialog(frame, "You found the secret button!"));
+
+            // Add the button to the frame
+            frame.setLayout(new FlowLayout());
+            frame.add(secretButton);
+
+            // To store the sequence of key presses
+            StringBuilder inputSequence = new StringBuilder();
+            String secretCode = "oten";  // The secret code to trigger the button
+
+            // Add a key listener to the frame to capture the typed sequence
+            frame.addKeyListener(new KeyAdapter() {
+                @Override
+                public void keyPressed(KeyEvent e) {
+                    // Capture the typed character
+                    char typedChar = e.getKeyChar();
+                    inputSequence.append(typedChar);
+
+                    // Check if the current sequence matches the secret code
+                    if (inputSequence.toString().endsWith(secretCode)) {
+                        secretButton.setVisible(true);  // Make the button visible
+                        frame.repaint();  // Repaint the frame to reflect the change
+                    }
+
+                    // If the sequence becomes longer than the secret code, reset it
+                    if (inputSequence.length() > secretCode.length()) {
+                        inputSequence.delete(0, inputSequence.length() - secretCode.length());
+                    }
+                }
+            });
+
+            frame.setFocusable(true);  // Make sure the frame can receive key events
+            frame.setVisible(true);
+        });
+    }
+}
