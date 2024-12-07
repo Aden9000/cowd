@@ -1,0 +1,134 @@
+import java.util.ArrayList;
+
+public class Stacklist {
+    private ArrayList<String> stackList; // ArrayList to hold stack elements
+
+    // Constructor to initialize the stack
+    public Stacklist() {
+        stackList = new ArrayList<>();
+    }
+
+    // Push an element onto the stack
+    public void push(String value) {
+        stackList.add(value);
+    }
+
+    // Pop an element off the stack
+    public String pop() {
+        if (isEmpty()) {
+            System.out.println("Stack is empty. Cannot pop.");
+            return null; // return a default value if stack is empty
+        } else {
+            return stackList.remove(stackList.size() - 1);
+        }
+    }
+
+    // Peek at the top element without removing it
+    public String peek() {
+        if (isEmpty()) {
+            System.out.println("Stack is empty. Nothing to peek.");
+            return null; // return a default value if stack is empty
+        } else {
+            return stackList.get(stackList.size() - 1);
+        }
+    }
+
+    // Check if the stack is empty
+    public boolean isEmpty() {
+        return stackList.isEmpty();
+    }
+}
+
+public class InfixtoPostfix extends Stacklist{
+    private String infix;
+
+    public InfixtoPostfix(String data){
+        infix = data;
+    }
+    private int getPrec(char c){
+        if(c == '*' || c == '/')
+            return 2;
+        if(c == '+' || c == '-')
+            return 1;
+        return -1;
+    }
+    public String convert(){
+        Stacklist s = new Stacklist();
+        String result =  "";
+
+        for(int i = 0; i < infix.length(); i++){
+            char c = infix.charAt(i);
+
+            if(Character.isDigit(c))
+                result += c;
+            else if (c == '(')
+                s.push(c+"");
+            else if(c == ')'){
+                while(!s.peek().equals("("))
+                    result += s.pop();
+                s.pop();
+            }
+            else {
+                while (!s.isEmpty() && getPrec(c) <= getPrec(s.peek().charAt(0))) {
+                    result += s.pop();
+                }
+                s.push(c + "");
+            }
+        }
+        while (!s.isEmpty()) {
+            result += s.pop()+"";
+        }
+        return result;
+    }
+}
+
+public class evaluate{
+    private String postfix;
+      
+      evaluate(String p){
+         postfix = p.trim();
+      }
+      public  double getResult(){
+         Stacklist s =  new Stacklist();
+         double ans = 0;
+         
+         for(int i = 0; i < postfix.length(); i++){
+            char ch = postfix.charAt(i);
+            
+            if(Character.isDigit(ch))
+               s.push(ch+"");
+            else{
+               double val2 = Double.parseDouble(s.pop());
+               double val1 = Double.parseDouble(s.pop());
+            
+               switch(ch){
+                  case '*':
+                     ans = val1 * val2;
+                     break;
+                  case '/':
+                     ans = val1 / val2;
+                     break;
+                  case '+':
+                     ans = val1 + val2;
+                     break;
+                  case '-':
+                     ans = val1 - val2;
+                     break;
+               }
+               s.push(ans + "");
+            }
+         }
+         return Double.parseDouble(s.pop());
+      }
+
+      public static void main(String[] args) {
+         String x = "1+1";
+ 
+         InfixtoPostfix g = new InfixtoPostfix(x);
+
+         evaluate y = new evaluate(g.convert());
+
+         System.out.println(g.convert());
+         System.out.println(y.getResult());
+     }
+   }
