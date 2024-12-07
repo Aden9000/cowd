@@ -1,0 +1,140 @@
+class Node{
+    Object value;
+    Node next;
+
+    public Node(Object value){
+        this.value = value;
+        this.next = null;
+    }
+}
+
+public class QueueNodes {
+    Node first;
+    Node last;
+    int count;
+
+    public QueueNodes(){
+        first = null;
+        last = null;
+        count = 0;
+    }
+
+    public boolean isEmpty(){
+        //return first == null && last == null;
+        return count == 0;
+    }
+
+    public boolean enqueue(Object value){
+        Node newNode = new Node(value);
+        if(isEmpty()){
+            first = newNode;
+            last = newNode;
+        }else{
+            last.next = newNode;
+            last = newNode;
+        }
+        count++;
+        return true;
+    }
+
+    public boolean dequeue(){
+        if(!isEmpty()){
+            if (first == last){
+                first = null;
+                last = null;
+            }else{
+                first = first.next;
+            }
+            count--;
+            return true;
+        }else
+        return false;
+
+    }
+
+    public String getFirst(){
+        String result= "";
+
+        if (!isEmpty()){
+            return result += "["+first.value+"]";
+        }else
+            return result = "Queue is empty";
+    }
+
+    public String getLast(){
+        String result = "";
+        if (!isEmpty()){
+            return result += "["+last.value+"]";
+        }else
+            return result = "Queue is empty";
+    }
+
+    public String display(){
+        String result = "";
+        if(!isEmpty()){
+            Node temp = first;
+            while(temp != null){
+                result +=  "["+temp.value+"]->";
+                temp = temp.next;
+            }
+            result += "\n";
+            return result;
+        }else
+            return result = "Queue is empty";
+    }
+}
+
+
+//array
+public class QueueArray {
+    private Object [] items;
+    private int count;
+
+    public QueueArray(int size){
+        items = new Object[size];
+        count = 0;
+    }
+
+    public boolean isEmpty(){
+        return count == 0;
+    }
+
+    public boolean isFull(){
+        return count == items.length;
+    }
+
+    public boolean enqueue(Object value){
+        if (!isEmpty()){
+            items[count++] = value;
+            return true;
+        }else{
+            System.out.println("Queue is empty...");
+            return false;
+        }
+    }
+
+    public boolean dequeue(){
+        if (!isFull()){
+            for(int i = 1; i < count; i++){
+                items[i-1] = items[i];
+            }
+            items[count-1] = null;
+            count--;
+            return true;
+        }else{
+            System.out.println("Queue is full...");
+            return false;
+        }
+    }
+
+    public void display(){
+        if(!isEmpty()){
+            for(int i = 0; i < count; i++){
+                System.out.print("["+items[i]+"]->");
+            }
+            System.out.println();
+        }else{
+            System.out.println("Queue is empty...");
+        }
+    }
+}
