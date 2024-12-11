@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class CalculatorGUI3 {
-    public static void showCalculatorFrame() {
+    public static void showCalculatorFrame(boolean pin) {
         JFrame frame = new JFrame("Calculator");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(400, 600);
@@ -12,14 +12,14 @@ public class CalculatorGUI3 {
 
         JTextField display = createDisplay();
 
-        JPanel buttonPanel = createButtonPanel(display, frame);
-  
+        JPanel buttonPanel = createButtonPanel(display, frame, pin);
+
         JPanel topPanel = createTopPanel(display, frame);
 
         frame.setLayout(new BorderLayout());
         topPanel.add(display, BorderLayout.SOUTH);
         frame.add(topPanel, BorderLayout.NORTH);
-        frame.add(buttonPanel, BorderLayout.CENTER);   
+        frame.add(buttonPanel, BorderLayout.CENTER);
         frame.setVisible(true);
     }
 
@@ -32,13 +32,14 @@ public class CalculatorGUI3 {
         return display;
     }
 
-    private static JPanel createButtonPanel(JTextField display, JFrame frame) {
+    private static JPanel createButtonPanel(JTextField display, JFrame frame, boolean pincrt) {
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(4, 4, 5, 5));
 
-        final String[] currentOperation = {""};
-        final double[] firstNumber = {0};
-        final boolean[] isOperatorClicked = {false};
+        final String[] currentOperation = { "" };
+        final double[] firstNumber = { 0 };
+        final boolean[] isOperatorClicked = { false };
+        String[] pin = {""};
 
         String[] buttons = {
                 "7", "8", "9", "/",
@@ -53,10 +54,10 @@ public class CalculatorGUI3 {
             buttonPanel.add(button);
 
             button.addActionListener(new ActionListener() {
-                @Override
                 public void actionPerformed(ActionEvent e) {
                     String command = e.getActionCommand();
-
+                    boolean createpin = pincrt;
+                    
                     switch (command) {
                         case "C":
                             display.setText("");
@@ -65,9 +66,19 @@ public class CalculatorGUI3 {
                             isOperatorClicked[0] = false;
                             break;
                         case "=":
+                            /*if (createpin){
+                                pin[0] = firstNumber[0]+currentOperation[0]+display.getText();
+                                JOptionPane.showMessageDialog(frame, "PIN Created Successfully!");
+                                createpin = false;
+                            }*/
+
                             if (!currentOperation[0].isEmpty() && !display.getText().isEmpty()) {
                                 double secondNumber = Double.parseDouble(display.getText());
                                 double result = 0;
+
+                                /*if(pin[0].equals(firstNumber[0]+currentOperation[0]+display.getText())){
+                                    frame.dispose();
+                                }*/
 
                                 switch (currentOperation[0]) {
                                     case "+":
@@ -87,7 +98,7 @@ public class CalculatorGUI3 {
                                             return;
                                         }
                                         break;
-                                    }
+                                }
                                 display.setText(String.valueOf(result));
                                 currentOperation[0] = "";
                                 isOperatorClicked[0] = false;
@@ -131,7 +142,6 @@ public class CalculatorGUI3 {
         newFrameButton.setOpaque(false);
 
         newFrameButton.addActionListener(new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
                 showNewFrame();
@@ -141,7 +151,7 @@ public class CalculatorGUI3 {
         topPanel.add(newFrameButton, BorderLayout.NORTH);
         return topPanel;
     }
-   
+
     private static void showNewFrame() {
         JFrame newFrame = new JFrame(" ");
         newFrame.setSize(400, 600);
@@ -149,11 +159,20 @@ public class CalculatorGUI3 {
         newFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JPanel panel = new JPanel(new GridBagLayout());
-        
+
         JButton backbutton = new JButton("Back");
         backbutton.setSize(60, 30);
         backbutton.setFont(new Font("Arial", Font.BOLD, 11));
         JButton pinbutton = new JButton("Create PIN");
+
+        pinbutton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                newFrame.dispose();
+                boolean pin = true;
+                showCalculatorFrame(pin);
+            }
+        });
+
         panel.add(pinbutton);
 
         newFrame.add(backbutton);
@@ -162,7 +181,6 @@ public class CalculatorGUI3 {
     }
 
     public static void main(String[] args) {
-        showCalculatorFrame();
+        showCalculatorFrame(false);
     }
 }
-
