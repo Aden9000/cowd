@@ -1,1 +1,35 @@
+#include <stdio.h>
 
+int main(void)
+{
+    /*local variable declarations*/
+    int num1;
+    
+    /*data input*/
+    printf("Enter Decimal: ");
+    scanf("%d", &num1);
+
+    /*data process*/
+    int bin1 = num1 / 2;
+    int bin2 = bin1 / 2;
+    int bin3 = bin2 / 2;
+    int bin4 = bin3 / 2;
+    int bin5 = bin4 / 2;
+    int bin6 = bin5 / 2;
+    int bin7 = bin6 / 2;
+    
+
+    double bina1 = num1 % 2;
+    double bina2 = bin1 % 2;
+    double bina3 = bin2 % 2;
+    double bina4 = bin3 % 2;
+    double bina5 = bin4 % 2;
+    double bina6 = bin5 % 2;
+    double bina7 = bin6 % 2;
+    double bina8 = bin7 % 2;
+
+    /*output data*/
+    printf("%.0f,%.0f,%.0f,%.0f,%.0f,%.0f,%.0f,%.0f", bina8, bina7,bina6, bina5, bina4, bina3, bina2, bina1);
+
+    return 0;
+}
